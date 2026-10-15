@@ -1,0 +1,11 @@
+D:\Programs\Visual Studio\Sort and Search Functions\bin\Debug\net8.0\Sort and Search Functions.deps.json
+D:\Programs\Visual Studio\Sort and Search Functions\bin\Debug\net8.0\Sort and Search Functions.dll
+D:\Programs\Visual Studio\Sort and Search Functions\bin\Debug\net8.0\Sort and Search Functions.pdb
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\Sort and Search Functions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\Sort and Search Functions.AssemblyInfoInputs.cache
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\Sort and Search Functions.AssemblyInfo.cs
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\Sort and Search Functions.csproj.CoreCompileInputs.cache
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\Sort and Search Functions.dll
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\refint\Sort and Search Functions.dll
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\Sort and Search Functions.pdb
+D:\Programs\Visual Studio\Sort and Search Functions\obj\Debug\net8.0\ref\Sort and Search Functions.dll
