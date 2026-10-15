@@ -1,0 +1,14 @@
+C:\Users\M196909\source\repos\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.exe
+C:\Users\M196909\source\repos\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.deps.json
+C:\Users\M196909\source\repos\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.runtimeconfig.json
+C:\Users\M196909\source\repos\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.dll
+C:\Users\M196909\source\repos\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.pdb
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.AssemblyInfoInputs.cache
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.AssemblyInfo.cs
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.csproj.CoreCompileInputs.cache
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.dll
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\refint\AssessmentTracker.dll
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.pdb
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.genruntimeconfig.cache
+C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\ref\AssessmentTracker.dll
