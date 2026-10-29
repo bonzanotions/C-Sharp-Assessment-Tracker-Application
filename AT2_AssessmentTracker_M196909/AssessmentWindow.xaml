@@ -1,0 +1,55 @@
+<Window x:Class="AssessmentTracker.AssessmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Assessment" Height="360" Width="480" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Unit/Cluster" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <TextBox x:Name="UnitTextBox" Grid.Row="0" Grid.Column="1" Margin="0,0,0,10" Padding="2"
+                 ToolTip="e.g. C# One"/>
+
+        <TextBlock Grid.Row="1" Text="Name" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Padding="2"
+                 ToolTip="e.g. AT2.3"/>
+
+        <TextBlock Grid.Row="2" Text="Type" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <ComboBox x:Name="TypeComboBox" Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" IsEditable="True"/>
+
+        <TextBlock Grid.Row="3" Text="Due Date" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox x:Name="DueDateTextBox" Width="110" Padding="2"/>
+            <TextBlock Text="MM-DD-YYYY" Foreground="DimGray" VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Text="Grade" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <ComboBox x:Name="GradeComboBox" Width="70"/>
+            <TextBlock Text="NYM = Not Yet Marked, NYS = Not Yet Satisfactory, S = Satisfactory"
+                       Foreground="DimGray" VerticalAlignment="Center" Margin="8,0,0,0" FontSize="10"
+                       TextWrapping="Wrap" Width="260"/>
+        </StackPanel>
+
+        <TextBlock x:Name="ErrorTextBlock" Grid.Row="5" Grid.ColumnSpan="2" Foreground="Firebrick"
+                   TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="OkButton" Content="Add Assessment" Padding="12,5" Margin="0,0,8,0" IsDefault="True"
+                    Click="OkButton_Click"/>
+            <Button x:Name="CancelButton" Content="Return to Menu" Padding="12,5" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
