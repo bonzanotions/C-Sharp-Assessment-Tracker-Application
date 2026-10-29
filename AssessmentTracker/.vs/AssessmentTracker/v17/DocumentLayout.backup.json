@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\M196909\\source\\repos\\AssessmentTracker\\",
+  "WorkspaceRootPath": "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{33E9E782-BB84-43AF-B0D0-0709152C3281}|AssessmentTracker.csproj|c:\\users\\m196909\\source\\repos\\assessmenttracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{33E9E782-BB84-43AF-B0D0-0709152C3281}|AssessmentTracker.csproj|d:\\programs\\github\\c#project1\\assessmenttracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{33E9E782-BB84-43AF-B0D0-0709152C3281}|AssessmentTracker.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\M196909\\source\\repos\\AssessmentTracker\\Program.cs",
+              "DocumentMoniker": "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\M196909\\source\\repos\\AssessmentTracker\\Program.cs",
+              "ToolTip": "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAowGYAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAgwGYAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-20T00:49:46.574Z",
               "EditorCaption": ""

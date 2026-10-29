@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ButtonTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47dea5da063fa5004cc732e49313bd7063fa91a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ButtonTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ButtonTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
