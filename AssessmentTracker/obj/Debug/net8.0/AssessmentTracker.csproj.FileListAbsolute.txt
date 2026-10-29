@@ -12,3 +12,18 @@ C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\refint\Assessme
 C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.pdb
 C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.genruntimeconfig.cache
 C:\Users\M196909\source\repos\AssessmentTracker\obj\Debug\net8.0\ref\AssessmentTracker.dll
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.exe
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.deps.json
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.runtimeconfig.json
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.dll
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\bin\Debug\net8.0\AssessmentTracker.pdb
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.AssemblyInfoInputs.cache
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.AssemblyInfo.cs
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.csproj.CoreCompileInputs.cache
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.sourcelink.json
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.dll
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\refint\AssessmentTracker.dll
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.pdb
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\AssessmentTracker.genruntimeconfig.cache
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#Project1\AssessmentTracker\obj\Debug\net8.0\ref\AssessmentTracker.dll
