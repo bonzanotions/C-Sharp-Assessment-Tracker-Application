@@ -1,0 +1,24 @@
+﻿<Window x:Class="AssessmentTrackerWPF.wndAddAssess"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssessmentTrackerWPF"
+        mc:Ignorable="d"
+        Title="wndAddAssess" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btnMainMenu" Content="Return To Menu" HorizontalAlignment="Left" Height="24" Margin="40,20,0,0" VerticalAlignment="Top" Width="110" Background="#FFDCEDCD" Click="btnMainMenu_Click"/>
+        <TextBox x:Name="txtUnitCluster" HorizontalAlignment="Left" Height="24" Margin="40,80,0,0" TextWrapping="Wrap" Text="Unit/Cluster" VerticalAlignment="Top" Width="250" SelectionBrush="#FFDCEDCD"/>
+        <Label Content="e.g. Cluster  - C# One" HorizontalAlignment="Left" Height="24" Margin="300,80,0,0" VerticalAlignment="Top" Width="228"/>
+        <TextBox x:Name="txtAssessName" HorizontalAlignment="Left" Height="24" Margin="40,140,0,0" TextWrapping="Wrap" Text="Assessment Name" VerticalAlignment="Top" Width="250" SelectionBrush="#FFDCEDCD"/>
+        <Label Content="e.g. Assessment 1" HorizontalAlignment="Left" Height="24" Margin="300,140,0,0" VerticalAlignment="Top" Width="228"/>
+        <TextBox x:Name="txtAssessType" HorizontalAlignment="Left" Height="24" Margin="40,200,0,0" TextWrapping="Wrap" Text="Assessment Type" VerticalAlignment="Top" Width="250" SelectionBrush="#FFDCEDCD"/>
+        <Label Content="e.g. Portfolio, Knowledge, Practical" HorizontalAlignment="Left" Height="24" Margin="300,200,0,0" VerticalAlignment="Top" Width="228"/>
+        <Label Content="e.g.Cluster  - C# One" HorizontalAlignment="Left" Height="24" Margin="300,260,0,0" VerticalAlignment="Top" Width="228"/>
+        <Label Content="e.g.Cluster  - C# One" HorizontalAlignment="Left" Height="24" Margin="300,320,0,0" VerticalAlignment="Top" Width="228"/>
+        <DatePicker x:Name="dpDueDate" HorizontalAlignment="Left" Margin="40,260,0,0" VerticalAlignment="Top" Width="250" SelectedDateFormat="Short"/>
+        <ComboBox x:Name="cmbResult" HorizontalAlignment="Left" Margin="40,320,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="cmbResult_SelectionChanged"/>
+        <Button x:Name="btnAddAssEnter" Content="Add Assessment" HorizontalAlignment="Right" Height="24" Margin="0,0,40,20" VerticalAlignment="Bottom" Width="135"/>
+
+    </Grid>
+</Window>
