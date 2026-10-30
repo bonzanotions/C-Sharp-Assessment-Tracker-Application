@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj": {}
+    "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj": {}
   },
   "projects": {
-    "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj": {
+    "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj",
+        "projectUniqueName": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj",
         "projectName": "AssessmentTracker",
-        "projectPath": "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj",
+        "projectPath": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTracker\\AssessmentTracker.csproj",
         "packagesPath": "C:\\Users\\M196909\\.nuget\\packages\\",
-        "outputPath": "D:\\Programs\\Github\\C#Project1\\AssessmentTracker\\obj\\",
+        "outputPath": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTracker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
