@@ -37,32 +37,7 @@ namespace AssessmentTrackerWPF
         public wndViewAssess()
         {
             InitializeComponent();
-            /*
-             * Method  DisplayAssessment
-             * Input Requirements: assessment string
-             * Output Expections: display assessments on the assessments list
-             */
-            static void DisplayAssessment(List<string> assessments)
-            {
-                //if the list is empty
-                if (assessments.Count == 0)
-                {
-                    Console.WriteLine("No Assessments recorded.");
-                }
-                else
-                {
-                    //loop through the list
-                    for (int i = 0; i < assessments.Count; i++)
-                    {
-                        // Each assessment is stored as "Unit/Cluster|Assessment Name|Assessment Type|Due Date"
-                        string[] parts = assessments[i].Split('|'); //split on the pipe (|)
-                        if (parts.Length == 4) //adjusted from 3 to 4 from practice code
-                        {
-                            Console.WriteLine($"{i + 1}. Unit/Cluster: {parts[0]}, Assessment Name: {parts[1]}, Assessment Type: {parts[2]}, Due Date: {parts[3]}");
-                        }
-                    }//end loop through the list
-                }
-            }//end DisplayAssessment
+            lstViewAssess.ItemsSource = App.Manager.CurrentAssessments;
         }
 
         private void lstViewAssess_SelectionChanged(object sender, SelectionChangedEventArgs e)

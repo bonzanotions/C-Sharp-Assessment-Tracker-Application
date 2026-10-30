@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTrackerWPF\\AssessmentTrackerWPF.csproj",
+      "projectUniqueName": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#ProjectHome\\AssessmentTrackerWPF\\AssessmentTrackerWPF.csproj",
       "projectName": "AssessmentTrackerWPF",
-      "projectPath": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTrackerWPF\\AssessmentTrackerWPF.csproj",
+      "projectPath": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#ProjectHome\\AssessmentTrackerWPF\\AssessmentTrackerWPF.csproj",
       "packagesPath": "C:\\Users\\John\\.nuget\\packages\\",
-      "outputPath": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#Project1\\AssessmentTrackerWPF\\obj\\",
+      "outputPath": "D:\\Cert IV ICT-Programming\\4 - C# One\\Assessments\\AT2\\C#ProjectHome\\AssessmentTrackerWPF\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\John\\AppData\\Roaming\\NuGet\\NuGet.Config",
