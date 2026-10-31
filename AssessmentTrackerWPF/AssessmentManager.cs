@@ -2,20 +2,19 @@
  * Project: Assessment Tracker
  * File: AssessmentManager.cs
  *
- * Version: 0.2.0
+ * Version: 0.4.0
  *
  * Description: Holds the lists of current and completed assessments and
  * loads them from their text files.
  *
  * Contains: AssessmentManager class (LoadAll, AddAssessment, LoadFromFile,
- * ParseLine, NumberCurrentAssessments)
- * 
- * Date modified: 30 / 10 / 2026
+ * ParseLine, NumberCurrentAssessments, DeleteAnyAssessment, DeleteAssessment, DeleteCompleted)
+ *
  *
  * Written by: John Richardson (M196909)
  *
  * Date created: 30 / 10 / 2026
- * Date modified: 30 / 10 / 2026
+ * Date modified: 31 / 10 / 2026
  */
 
 using System.Globalization;
@@ -71,6 +70,27 @@ namespace AssessmentTrackerWPF
             // Insert the new assessment at that position, then renumber the list
             CurrentAssessments.Insert(position, newAssessment);
             NumberCurrentAssessments();
+        }
+
+        /// <summary>
+        /// Removes an assessment from the current list.
+        /// </summary>
+        /// <param name="assessmentToDelete">The assessment to remove.</param>
+        /// <returns>True if the assessment was found and removed, otherwise false.</returns>
+        public bool DeleteAssessment(Assessment assessmentToDelete)
+        {
+            // Look through the list for the assessment, position by position
+            for (int index = 0; index < CurrentAssessments.Count; index++)
+            {
+                if (CurrentAssessments[index] == assessmentToDelete)
+                {
+                    CurrentAssessments.RemoveAt(index);
+                    NumberCurrentAssessments();
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         ///<summary>
@@ -201,6 +221,191 @@ namespace AssessmentTrackerWPF
             }
 
             return new Assessment(id, parts[1], parts[2], parts[3], dueDate, grade);
+        }
+
+        /// <summary>
+        /// Joins all the details of an assessment into one lowercase string, used for searching.
+        /// </summary>
+        /// param name="assessment">The assessment to join.</param>
+        /// <returns>A single string containing all the assessment's details.</returns>
+        private string GetSearchText(Assessment assessment)
+        {
+            return string.Join(" ", assessment.UnitCluster, assessment.AssessmentName,
+                               assessment.AssessmentType, assessment.DueDate.ToString(DATE_FORMAT),
+                               assessment.Grade).ToLower();
+        }
+
+        /// <summary>
+        /// Searches the current and completed assessments and returns the best matches first.
+        /// </summary>
+        /// <param name="searchText">The text to look for. Empty text returns everything.</param>
+        /// <returns>The matching assessments, ordered from closest match to loosest match.</returns>
+        public List<Assessment> SearchAssessments(string searchText)
+        {
+            string search = searchText.Trim().ToLower();
+
+            // Put both lists together so one search covers them
+            List<Assessment> allAssessments = new List<Assessment>(CurrentAssessments);
+            allAssessments.AddRange(CompletedAssessments);
+
+            if (search == "")
+            {
+                return allAssessments;
+            }
+
+            List<Assessment> exact = new List<Assessment>();
+            List<Assessment> contains = new List<Assessment>();
+            List<Assessment> ordered = new List<Assessment>();
+            List<Assessment> containsAll = new List<Assessment>();
+            List<Assessment> partial = new List<Assessment>();
+
+            foreach (Assessment assessment in allAssessments)
+            {
+                string text = GetSearchText(assessment);
+
+                // Group 1: one whole field matches exactly
+                if (assessment.UnitCluster.ToLower() == search ||
+                    assessment.AssessmentName.ToLower() == search ||
+                    assessment.AssessmentType.ToLower() == search ||
+                    assessment.Grade.ToLower() == search)
+                {
+                    exact.Add(assessment);
+                    continue;
+                }
+
+                // Group 2: the text contains what was typed
+                if (text.Contains(search))
+                {
+                    contains.Add(assessment);
+                    continue;
+                }
+
+                // Group 3: the typed characters appear in the same order
+                int searchIndex = 0;
+                foreach (char letter in text)
+                {
+                    if (searchIndex < search.Length && letter == search[searchIndex])
+                    {
+                        searchIndex++;
+                    }
+                }
+
+                if (searchIndex == search.Length)
+                {
+                    ordered.Add(assessment);
+                    continue;
+                }
+
+                // Group 4: the text contains every typed character, in any order
+                bool hasAll = true;
+                foreach (char letter in search)
+                {
+                    if (!text.Contains(letter))
+                    {
+                        hasAll = false;
+                        break;
+                    }
+                }
+
+                if (hasAll)
+                {
+                    containsAll.Add(assessment);
+                    continue;
+                }
+
+                // Group 5: at least half of the typed characters are in the text
+                int matches = 0;
+                foreach (char letter in search)
+                {
+                    if (text.Contains(letter))
+                    {
+                        matches++;
+                    }
+                }
+
+                if (matches > 0 && matches >= search.Length / 2)
+                {
+                    partial.Add(assessment);
+                }
+            }
+
+            // Join the groups together, best matches first
+            List<Assessment> results = new List<Assessment>();
+            results.AddRange(exact);
+            results.AddRange(contains);
+            results.AddRange(ordered);
+            results.AddRange(containsAll);
+            results.AddRange(partial);
+
+            return results;
+        }
+
+        /// <summary>
+        /// Finds a completed assessment by its ID using a binary search.
+        /// The completed list must be in order of ID.
+        /// </summary>
+        /// <param name="id">The ID to look for.</param>
+        /// <returns>The assessment, or null if no completed assessment has that ID.</returns>
+        public Assessment? FindCompletedById(int id)
+        {
+            int low = 0;
+            int high = CompletedAssessments.Count - 1;
+
+            // Keep narrowing the range until it is empty
+            while (low <= high)
+            {
+                int middle = (low + high) / 2;
+                int middleId = CompletedAssessments[middle].Id;
+
+                if (middleId == id)
+                {
+                    return CompletedAssessments[middle];
+                }
+                else if (middleId < id)
+                {
+                    low = middle + 1;
+                }
+                else
+                {
+                    high = middle - 1;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Removes an assessment from the completed list.
+        /// </summary>
+        /// <param name="assessmentToDelete">The assessment to remove.</param>
+        /// <returns>True if the assessment was found and removed, otherwise false.</returns>
+        public bool DeleteCompleted(Assessment assessmentToDelete)
+        {
+            for (int index = 0; index < CompletedAssessments.Count; index++)
+            {
+                if (CompletedAssessments[index] == assessmentToDelete)
+                {
+                    CompletedAssessments.RemoveAt(index);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Removes an assessment from whichever list it is in.
+        /// </summary>
+        /// <param name="assessmentToDelete">The assessment to remove.</param>
+        /// <returns>True if the assessment was found and removed, otherwise false.</returns>
+        public bool DeleteAnyAssessment(Assessment assessmentToDelete)
+        {
+            if (DeleteAssessment(assessmentToDelete))
+            {
+                return true;
+            }
+
+            return DeleteCompleted(assessmentToDelete);
         }
 
         /// <summary>
