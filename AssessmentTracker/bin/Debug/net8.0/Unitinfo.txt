@@ -1,7 +1,0 @@
-C# One|AT1|Knowledge Questions|21-15-2512
-C# Two|AT1|Knowledge Questions|21-15-2512
-C# Four|AT1|Knowledge Questions|21-15-2512
-Test|Tester|Testing|01-02-2026
-Test2|test22|test22|22-22-2026
-incorrectDate|incorrenctDate|incorrectDate|20-20-2026
-546|123|131|02-02-2026

@@ -16,6 +16,7 @@
  */
 
 using System.Windows;
+using System.IO;
 
 namespace AssessmentTrackerWPF
 {
@@ -63,6 +64,13 @@ namespace AssessmentTrackerWPF
         /// <param name="e">The click event data.</param>
         private void btnDelAssess_Click(object sender, RoutedEventArgs e)
         {
+            // Opens the Delete Assessments window in the same spot and hides the main window
+            wndDeleteAssess deleteAssessWindow = new wndDeleteAssess();
+            deleteAssessWindow.Left = this.Left;
+            deleteAssessWindow.Top = this.Top;
+            deleteAssessWindow.Show();
+
+            this.Hide();
         }
 
         /// <summary>

@@ -72,3 +72,6 @@ D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTr
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTrackerWPF\obj\Debug\net8.0-windows\AssessmentTrackerWPF.pdb
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTrackerWPF\obj\Debug\net8.0-windows\AssessmentTrackerWPF.genruntimeconfig.cache
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTrackerWPF\obj\Debug\net8.0-windows\ref\AssessmentTrackerWPF.dll
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTrackerWPF\obj\Debug\net8.0-windows\wndDeleteAssess.g.cs
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTrackerWPF\obj\Debug\net8.0-windows\wndDeleteAssess.baml
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\C#ProjectHome\AssessmentTrackerWPF\obj\Debug\net8.0-windows\App.baml
