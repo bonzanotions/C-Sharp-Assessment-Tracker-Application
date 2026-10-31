@@ -2,13 +2,15 @@
  * Project: Assessment Tracker
  * File: AssessmentManager.cs
  *
- * Version: 0.1.0
+ * Version: 0.2.0
  *
  * Description: Holds the lists of current and completed assessments and
  * loads them from their text files.
  *
- * Contains: AssessmentManager class (LoadAll, LoadFromFile, ParseLine,
- * NumberCurrentAssessments)
+ * Contains: AssessmentManager class (LoadAll, AddAssessment, LoadFromFile,
+ * ParseLine, NumberCurrentAssessments)
+ * 
+ * Date modified: 30 / 10 / 2026
  *
  * Written by: John Richardson (M196909)
  *
@@ -48,7 +50,74 @@ namespace AssessmentTrackerWPF
         {
             LoadFromFile(CURRENT_FILE, CurrentAssessments);
             LoadFromFile(COMPLETED_FILE, CompletedAssessments);
+            CurrentAssessments.Sort((first, second) => first.DueDate.CompareTo(second.DueDate));
             NumberCurrentAssessments();
+        }
+
+        /// <summary>
+        /// Adds an assessment to the current list, keeping the list in order of due date.
+        /// </summary>
+        /// <param name="newAssessment">The assessment to add.</param>
+        public void AddAssessment(Assessment newAssessment)
+        {
+            // Find the first assessment that is due after the new one
+            int position = 0;
+            while (position < CurrentAssessments.Count &&
+                   CurrentAssessments[position].DueDate <= newAssessment.DueDate)
+            {
+                position++;
+            }
+
+            // Insert the new assessment at that position, then renumber the list
+            CurrentAssessments.Insert(position, newAssessment);
+            NumberCurrentAssessments();
+        }
+
+        ///<summary>
+        /// Savesthe current and completed assessments to their respective text files.
+        /// </summary>
+        public void SaveAll()
+        {
+            SaveToFile(CURRENT_FILE, CurrentAssessments, false);
+            SaveToFile(COMPLETED_FILE, CompletedAssessments, true);
+        }
+
+        ///<summary>
+        /// Writes every assessment in the given list to the specified text file, one per line.
+        /// </summary>
+        /// <param name="filePath">The text file to write to.</param>
+        /// <param name="sourceList">The list of assessments to write.</param>
+        /// <param name="includeId">Whether to include the ID in the output.</param>
+        private void SaveToFile(string filePath, List<Assessment> sourceList, bool includeId)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                foreach (Assessment assessment in sourceList)
+                {
+                    writer.WriteLine(BuildLine(assessment, includeId));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Builds a line of text for one assessment, optionally including the ID.
+        /// </summary>
+        /// <param name="assessment">The assessment to write.</param>
+        /// <param name="includeId">Whether to include the ID in the output.</param>
+        /// <returns>The line of text, with the parts separated by | characters.</returns>
+        private string BuildLine(Assessment assessment, bool includeId)
+        {
+            string dateText = assessment.DueDate.ToString(DATE_FORMAT, CultureInfo.InvariantCulture);
+
+            string line = string.Join("|", assessment.UnitCluster, assessment.AssessmentName,
+                                      assessment.AssessmentType, dateText, assessment.Grade);
+
+            if (includeId)
+            {
+                line = assessment.Id + "|" + line;
+            }
+
+            return line;
         }
 
         /// <summary>
