@@ -147,6 +147,39 @@ namespace AssessmentTrackerWPF
         }
 
         /// <summary>
+        /// Changes the details of an assessment and moves it to the list that matches its new grade.
+        /// The ID is not changed.
+        /// </summary>
+        /// <param name="assessmentToUpdate">The assessment to change.</param>
+        /// <param name="unitCluster">The new unit/cluster.</param>
+        /// <param name="assessmentName">The new assessment name.</param>
+        /// <param name="assessmentType">The new assessment type.</param>
+        /// <param name="dueDate">The new due date.</param>
+        /// <param name="grade">The new grade.</param>
+        /// <returns>True if the assessment was found and updated, otherwise false.</returns>
+        public bool UpdateAssessment(Assessment assessmentToUpdate, string unitCluster,
+                                     string assessmentName, string assessmentType,
+                                     DateTime dueDate, string grade)
+        {
+            // Take it out of whichever list it is in
+            if (!DeleteAnyAssessment(assessmentToUpdate))
+            {
+                return false;
+            }
+
+            // Change its details (the ID stays the same)
+            assessmentToUpdate.UnitCluster = unitCluster;
+            assessmentToUpdate.AssessmentName = assessmentName;
+            assessmentToUpdate.AssessmentType = assessmentType;
+            assessmentToUpdate.DueDate = dueDate;
+            assessmentToUpdate.Grade = grade;
+
+            // Put it back in the right list, in the right position
+            PlaceAssessment(assessmentToUpdate);
+            return true;
+        }
+
+        /// <summary>
         /// Removes an assessment from the current list.
         /// </summary>
         /// <param name="assessmentToDelete">The assessment to remove.</param>

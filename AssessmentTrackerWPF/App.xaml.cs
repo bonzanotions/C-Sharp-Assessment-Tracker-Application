@@ -47,5 +47,23 @@ namespace AssessmentTrackerWPF
 
             base.OnStartup(e);
         }
+
+        /// <summary>
+        /// Saves both assessment files when the application closes.
+        /// </summary>
+        /// <param name="e">The exit event data.</param>
+        protected override void OnExit(ExitEventArgs e)
+        {
+            try
+            {
+                Manager.SaveAll();
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("The assessments could not be saved.");
+            }
+
+            base.OnExit(e);
+        }
     }
 }

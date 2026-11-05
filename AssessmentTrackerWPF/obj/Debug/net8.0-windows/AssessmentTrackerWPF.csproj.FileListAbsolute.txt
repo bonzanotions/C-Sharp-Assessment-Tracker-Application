@@ -131,3 +131,7 @@ D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\Assessmen
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\AssessmentTrackerWPF.pdb
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\AssessmentTrackerWPF.genruntimeconfig.cache
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\ref\AssessmentTrackerWPF.dll
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\wndEditAssess.g.cs
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\wndEditSearch.g.cs
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\wndEditAssess.baml
+D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\obj\Debug\net8.0-windows\wndEditSearch.baml

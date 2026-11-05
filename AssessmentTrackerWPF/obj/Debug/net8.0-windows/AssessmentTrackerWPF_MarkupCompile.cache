@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 D:\Cert IV ICT-Programming\4 - C# One\Assessments\AT2\AT2.4\C-Project1\AssessmentTrackerWPF\App.xaml
-4-2005810689
+61642626057
 
-9-1453283470
+111563772391
 1981266802334
-MainWindow.xaml;wndAddAssess.xaml;wndDeleteAssess.xaml;wndViewAssess.xaml;
+MainWindow.xaml;wndAddAssess.xaml;wndDeleteAssess.xaml;wndEditAssess.xaml;wndEditSearch.xaml;wndViewAssess.xaml;
 
 False
 
