@@ -37,7 +37,7 @@ namespace AssessmentTrackerWPF
         public wndViewAssess()
         {
             InitializeComponent();
-            lstViewAssess.ItemsSource = App.Manager.CurrentAssessments;
+            lstViewAssess.ItemsSource = App.Manager.SearchAssessments("");
         }
 
         private void lstViewAssess_SelectionChanged(object sender, SelectionChangedEventArgs e)
