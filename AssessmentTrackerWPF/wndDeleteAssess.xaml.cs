@@ -36,12 +36,21 @@ namespace AssessmentTrackerWPF
         }
 
         /// <summary>
-        /// Clears the search box and shows every current and completed assessment.
+        /// Clears the search box and shows the assessments for the current search type:
+        /// everything for a general search, or only completed assessments for an ID search.
         /// </summary>
         private void ShowAllAssessments()
         {
             txtSearch.Clear();
-            lstNovSearchAssess.ItemsSource = App.Manager.SearchAssessments("");
+
+            if (isGeneralSearch)
+            {
+                lstNovSearchAssess.ItemsSource = App.Manager.SearchAssessments("");
+            }
+            else
+            {
+                lstNovSearchAssess.ItemsSource = new List<Assessment>(App.Manager.CompletedAssessments);
+            }
         }
 
         private void lstViewAssess_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -31,6 +31,7 @@ namespace AssessmentTrackerWPF
         private const string CURRENT_FILE = "assessments.txt";
         private const string COMPLETED_FILE = "completed.txt";
         private const string DATE_FORMAT = "MM-dd-yyyy";
+        private const string COMPLETED_GRADE = "S";
         //The next ID to assign to a new assessment
         private int nextId = 1;
 
@@ -102,23 +103,47 @@ namespace AssessmentTrackerWPF
         }
 
         /// <summary>
-        /// Adds an assessment to the current list, keeping the list in order of due date.
+        /// Gives a new assessment an ID and adds it to the list that matches its grade.
         /// </summary>
         /// <param name="newAssessment">The assessment to add.</param>
         public void AddAssessment(Assessment newAssessment)
         {
-            // Find the first assessment that is due after the new one
-            int position = 0;
-            while (position < CurrentAssessments.Count &&
-                   CurrentAssessments[position].DueDate <= newAssessment.DueDate)
-            {
-                position++;
-            }
-
-            // Insert the new assessment at that position
             newAssessment.Id = nextId;
             nextId++;
-            CurrentAssessments.Insert(position, newAssessment);
+            PlaceAssessment(newAssessment);
+        }
+
+        /// <summary>
+        /// Puts an assessment in the list that matches its grade, in the correct position,
+        /// without changing its ID.
+        /// </summary>
+        /// <param name="assessment">The assessment to place.</param>
+        private void PlaceAssessment(Assessment assessment)
+        {
+            int position = 0;
+
+            if (assessment.Grade == COMPLETED_GRADE)
+            {
+                // Completed list: keep it in order of ID
+                while (position < CompletedAssessments.Count &&
+                       CompletedAssessments[position].Id < assessment.Id)
+                {
+                    position++;
+                }
+
+                CompletedAssessments.Insert(position, assessment);
+            }
+            else
+            {
+                // Current list: keep it in order of due date
+                while (position < CurrentAssessments.Count &&
+                       CurrentAssessments[position].DueDate <= assessment.DueDate)
+                {
+                    position++;
+                }
+
+                CurrentAssessments.Insert(position, assessment);
+            }
         }
 
         /// <summary>
