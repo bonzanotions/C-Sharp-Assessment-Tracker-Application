@@ -109,7 +109,7 @@ namespace AssessmentTrackerWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AssessmentTrackerWPF;V1.0.0.0;component/wndaddassess.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AssessmentTrackerWPF;component/wndaddassess.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\wndAddAssess.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

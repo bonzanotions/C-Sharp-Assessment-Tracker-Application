@@ -69,7 +69,7 @@ namespace AssessmentTrackerWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AssessmentTrackerWPF;V1.0.0.0;component/wndviewassess.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AssessmentTrackerWPF;component/wndviewassess.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\wndViewAssess.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

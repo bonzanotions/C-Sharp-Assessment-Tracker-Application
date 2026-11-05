@@ -423,6 +423,41 @@ namespace AssessmentTrackerWPF
         }
 
         /// <summary>
+        /// Checks whether another assessment already has the same unit/cluster, name and type.
+        /// Upper/lower case and extra spaces at the ends are ignored.
+        /// </summary>
+        /// <param name="unitCluster">The unit/cluster to check.</param>
+        /// <param name="assessmentName">The assessment name to check.</param>
+        /// <param name="assessmentType">The assessment type to check.</param>
+        /// <param name="assessmentToIgnore">An assessment to skip (the one being edited), or null.</param>
+        /// <returns>True if a matching assessment exists, otherwise false.</returns>
+        public bool IsDuplicate(string unitCluster, string assessmentName, string assessmentType,
+                                Assessment? assessmentToIgnore)
+        {
+            // Put both lists together so one loop covers them
+            List<Assessment> allAssessments = new List<Assessment>(CurrentAssessments);
+            allAssessments.AddRange(CompletedAssessments);
+
+            foreach (Assessment assessment in allAssessments)
+            {
+                // Skip the assessment that is being edited
+                if (assessment == assessmentToIgnore)
+                {
+                    continue;
+                }
+
+                if (assessment.UnitCluster.Trim().ToLower() == unitCluster.Trim().ToLower() &&
+                    assessment.AssessmentName.Trim().ToLower() == assessmentName.Trim().ToLower() &&
+                    assessment.AssessmentType.Trim().ToLower() == assessmentType.Trim().ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Removes an assessment from the completed list.
         /// </summary>
         /// <param name="assessmentToDelete">The assessment to remove.</param>
