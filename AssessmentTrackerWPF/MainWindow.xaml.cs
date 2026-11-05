@@ -74,13 +74,19 @@ namespace AssessmentTrackerWPF
         }
 
         /// <summary>
-        /// This button is currently under construction and will be implemented in the future.
+        /// Opens the window for finding an assessment to edit.
         /// </summary>
         /// <param name="sender">The button that was clicked.</param>
         /// <param name="e">The click event data.</param>
         private void btnEditAssess_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button Under Construction");
+            // Opens the Edit search window in the same spot and hides the main window
+            wndEditSearch editSearchWindow = new wndEditSearch();
+            editSearchWindow.Left = this.Left;
+            editSearchWindow.Top = this.Top;
+            editSearchWindow.Show();
+
+            this.Hide();
         }
     }
 }

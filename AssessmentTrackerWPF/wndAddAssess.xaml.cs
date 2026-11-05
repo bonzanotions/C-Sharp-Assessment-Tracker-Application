@@ -110,6 +110,14 @@ namespace AssessmentTrackerWPF
 
             string grade = ((string)cmbResult.SelectedItem).Split(' ')[0];
 
+            // Refuse an assessment that already exists
+            if (App.Manager.IsDuplicate(unitCluster, assessmentName, assessmentType, null))
+            {
+                MessageBox.Show("This assessment already exists. Please check the unit, name and type.",
+                                "Duplicate Assessment", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             // Create a new Assessment object
             Assessment newAssessment = new Assessment(0, unitCluster, assessmentName, assessmentType, dueDate, grade);
             App.Manager.AddAssessment(newAssessment);

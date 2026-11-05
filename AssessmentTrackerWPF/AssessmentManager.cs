@@ -31,6 +31,9 @@ namespace AssessmentTrackerWPF
         private const string CURRENT_FILE = "assessments.txt";
         private const string COMPLETED_FILE = "completed.txt";
         private const string DATE_FORMAT = "MM-dd-yyyy";
+        private const string COMPLETED_GRADE = "S";
+        //The next ID to assign to a new assessment
+        private int nextId = 1;
 
         /// <summary>
         /// Gets the assessments that are not yet completed.
@@ -50,26 +53,130 @@ namespace AssessmentTrackerWPF
             LoadFromFile(CURRENT_FILE, CurrentAssessments);
             LoadFromFile(COMPLETED_FILE, CompletedAssessments);
             CurrentAssessments.Sort((first, second) => first.DueDate.CompareTo(second.DueDate));
-            NumberCurrentAssessments();
+            AssignMissingIds();
         }
 
         /// <summary>
-        /// Adds an assessment to the current list, keeping the list in order of due date.
+        /// Works out the next unused ID, then gives an ID to any assessment that doesn't have one yet.
+        /// </summary>
+        private void AssignMissingIds()
+        {
+            // Step 1: find the highest ID already in use across both lists
+            int highestId = 0;
+
+            foreach (Assessment assessment in CurrentAssessments)
+            {
+                if (assessment.Id > highestId)
+                {
+                    highestId = assessment.Id;
+                }
+            }
+
+            foreach (Assessment assessment in CompletedAssessments)
+            {
+                if (assessment.Id > highestId)
+                {
+                    highestId = assessment.Id;
+                }
+            }
+
+            nextId = highestId + 1;
+
+            // Step 2: give a new ID to anything that has none (Id of 0)
+            foreach (Assessment assessment in CurrentAssessments)
+            {
+                if (assessment.Id == 0)
+                {
+                    assessment.Id = nextId;
+                    nextId++;
+                }
+            }
+
+            foreach (Assessment assessment in CompletedAssessments)
+            {
+                if (assessment.Id == 0)
+                {
+                    assessment.Id = nextId;
+                    nextId++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gives a new assessment an ID and adds it to the list that matches its grade.
         /// </summary>
         /// <param name="newAssessment">The assessment to add.</param>
         public void AddAssessment(Assessment newAssessment)
         {
-            // Find the first assessment that is due after the new one
+            newAssessment.Id = nextId;
+            nextId++;
+            PlaceAssessment(newAssessment);
+        }
+
+        /// <summary>
+        /// Puts an assessment in the list that matches its grade, in the correct position,
+        /// without changing its ID.
+        /// </summary>
+        /// <param name="assessment">The assessment to place.</param>
+        private void PlaceAssessment(Assessment assessment)
+        {
             int position = 0;
-            while (position < CurrentAssessments.Count &&
-                   CurrentAssessments[position].DueDate <= newAssessment.DueDate)
+
+            if (assessment.Grade == COMPLETED_GRADE)
             {
-                position++;
+                // Completed list: keep it in order of ID
+                while (position < CompletedAssessments.Count &&
+                       CompletedAssessments[position].Id < assessment.Id)
+                {
+                    position++;
+                }
+
+                CompletedAssessments.Insert(position, assessment);
+            }
+            else
+            {
+                // Current list: keep it in order of due date
+                while (position < CurrentAssessments.Count &&
+                       CurrentAssessments[position].DueDate <= assessment.DueDate)
+                {
+                    position++;
+                }
+
+                CurrentAssessments.Insert(position, assessment);
+            }
+        }
+
+        /// <summary>
+        /// Changes the details of an assessment and moves it to the list that matches its new grade.
+        /// The ID is not changed.
+        /// </summary>
+        /// <param name="assessmentToUpdate">The assessment to change.</param>
+        /// <param name="unitCluster">The new unit/cluster.</param>
+        /// <param name="assessmentName">The new assessment name.</param>
+        /// <param name="assessmentType">The new assessment type.</param>
+        /// <param name="dueDate">The new due date.</param>
+        /// <param name="grade">The new grade.</param>
+        /// <returns>True if the assessment was found and updated, otherwise false.</returns>
+        public bool UpdateAssessment(Assessment assessmentToUpdate, string unitCluster,
+                                     string assessmentName, string assessmentType,
+                                     DateTime dueDate, string grade)
+        {
+            // Take it out of whichever list it is in
+            if (!DeleteAnyAssessment(assessmentToUpdate))
+            {
+                return false;
             }
 
-            // Insert the new assessment at that position, then renumber the list
-            CurrentAssessments.Insert(position, newAssessment);
-            NumberCurrentAssessments();
+            // Change its details (the ID stays the same)
+            assessmentToUpdate.UnitCluster = unitCluster;
+            assessmentToUpdate.AssessmentName = assessmentName;
+            assessmentToUpdate.AssessmentType = assessmentType;
+            assessmentToUpdate.DueDate = dueDate;
+            assessmentToUpdate.Grade = grade;
+
+            // Put it back in the right list, in the right position
+            PlaceAssessment(assessmentToUpdate);
+            return true;
         }
 
         /// <summary>
@@ -85,7 +192,6 @@ namespace AssessmentTrackerWPF
                 if (CurrentAssessments[index] == assessmentToDelete)
                 {
                     CurrentAssessments.RemoveAt(index);
-                    NumberCurrentAssessments();
                     return true;
                 }
             }
@@ -98,7 +204,7 @@ namespace AssessmentTrackerWPF
         /// </summary>
         public void SaveAll()
         {
-            SaveToFile(CURRENT_FILE, CurrentAssessments, false);
+            SaveToFile(CURRENT_FILE, CurrentAssessments, true);
             SaveToFile(COMPLETED_FILE, CompletedAssessments, true);
         }
 
@@ -375,6 +481,41 @@ namespace AssessmentTrackerWPF
         }
 
         /// <summary>
+        /// Checks whether another assessment already has the same unit/cluster, name and type.
+        /// Upper/lower case and extra spaces at the ends are ignored.
+        /// </summary>
+        /// <param name="unitCluster">The unit/cluster to check.</param>
+        /// <param name="assessmentName">The assessment name to check.</param>
+        /// <param name="assessmentType">The assessment type to check.</param>
+        /// <param name="assessmentToIgnore">An assessment to skip (the one being edited), or null.</param>
+        /// <returns>True if a matching assessment exists, otherwise false.</returns>
+        public bool IsDuplicate(string unitCluster, string assessmentName, string assessmentType,
+                                Assessment? assessmentToIgnore)
+        {
+            // Put both lists together so one loop covers them
+            List<Assessment> allAssessments = new List<Assessment>(CurrentAssessments);
+            allAssessments.AddRange(CompletedAssessments);
+
+            foreach (Assessment assessment in allAssessments)
+            {
+                // Skip the assessment that is being edited
+                if (assessment == assessmentToIgnore)
+                {
+                    continue;
+                }
+
+                if (assessment.UnitCluster.Trim().ToLower() == unitCluster.Trim().ToLower() &&
+                    assessment.AssessmentName.Trim().ToLower() == assessmentName.Trim().ToLower() &&
+                    assessment.AssessmentType.Trim().ToLower() == assessmentType.Trim().ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Removes an assessment from the completed list.
         /// </summary>
         /// <param name="assessmentToDelete">The assessment to remove.</param>
@@ -406,17 +547,6 @@ namespace AssessmentTrackerWPF
             }
 
             return DeleteCompleted(assessmentToDelete);
-        }
-
-        /// <summary>
-        /// Gives each current assessment a number (1, 2, 3...) in list order.
-        /// </summary>
-        private void NumberCurrentAssessments()
-        {
-            for (int i = 0; i < CurrentAssessments.Count; i++)
-            {
-                CurrentAssessments[i].Id = i + 1;
-            }
         }
     }
 }
