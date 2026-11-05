@@ -31,6 +31,8 @@ namespace AssessmentTrackerWPF
         private const string CURRENT_FILE = "assessments.txt";
         private const string COMPLETED_FILE = "completed.txt";
         private const string DATE_FORMAT = "MM-dd-yyyy";
+        //The next ID to assign to a new assessment
+        private int nextId = 1;
 
         /// <summary>
         /// Gets the assessments that are not yet completed.
@@ -50,7 +52,53 @@ namespace AssessmentTrackerWPF
             LoadFromFile(CURRENT_FILE, CurrentAssessments);
             LoadFromFile(COMPLETED_FILE, CompletedAssessments);
             CurrentAssessments.Sort((first, second) => first.DueDate.CompareTo(second.DueDate));
-            NumberCurrentAssessments();
+            AssignMissingIds();
+        }
+
+        /// <summary>
+        /// Works out the next unused ID, then gives an ID to any assessment that doesn't have one yet.
+        /// </summary>
+        private void AssignMissingIds()
+        {
+            // Step 1: find the highest ID already in use across both lists
+            int highestId = 0;
+
+            foreach (Assessment assessment in CurrentAssessments)
+            {
+                if (assessment.Id > highestId)
+                {
+                    highestId = assessment.Id;
+                }
+            }
+
+            foreach (Assessment assessment in CompletedAssessments)
+            {
+                if (assessment.Id > highestId)
+                {
+                    highestId = assessment.Id;
+                }
+            }
+
+            nextId = highestId + 1;
+
+            // Step 2: give a new ID to anything that has none (Id of 0)
+            foreach (Assessment assessment in CurrentAssessments)
+            {
+                if (assessment.Id == 0)
+                {
+                    assessment.Id = nextId;
+                    nextId++;
+                }
+            }
+
+            foreach (Assessment assessment in CompletedAssessments)
+            {
+                if (assessment.Id == 0)
+                {
+                    assessment.Id = nextId;
+                    nextId++;
+                }
+            }
         }
 
         /// <summary>
@@ -67,9 +115,10 @@ namespace AssessmentTrackerWPF
                 position++;
             }
 
-            // Insert the new assessment at that position, then renumber the list
+            // Insert the new assessment at that position
+            newAssessment.Id = nextId;
+            nextId++;
             CurrentAssessments.Insert(position, newAssessment);
-            NumberCurrentAssessments();
         }
 
         /// <summary>
@@ -85,7 +134,6 @@ namespace AssessmentTrackerWPF
                 if (CurrentAssessments[index] == assessmentToDelete)
                 {
                     CurrentAssessments.RemoveAt(index);
-                    NumberCurrentAssessments();
                     return true;
                 }
             }
@@ -98,7 +146,7 @@ namespace AssessmentTrackerWPF
         /// </summary>
         public void SaveAll()
         {
-            SaveToFile(CURRENT_FILE, CurrentAssessments, false);
+            SaveToFile(CURRENT_FILE, CurrentAssessments, true);
             SaveToFile(COMPLETED_FILE, CompletedAssessments, true);
         }
 
@@ -406,17 +454,6 @@ namespace AssessmentTrackerWPF
             }
 
             return DeleteCompleted(assessmentToDelete);
-        }
-
-        /// <summary>
-        /// Gives each current assessment a number (1, 2, 3...) in list order.
-        /// </summary>
-        private void NumberCurrentAssessments()
-        {
-            for (int i = 0; i < CurrentAssessments.Count; i++)
-            {
-                CurrentAssessments[i].Id = i + 1;
-            }
         }
     }
 }
