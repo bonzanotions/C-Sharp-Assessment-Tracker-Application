@@ -11,6 +11,7 @@
         <ListView ItemContainerStyle="{DynamicResource ListViewItemContainerStyleView}" x:Name="lstViewAssess" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,60,10,10" Foreground="Black" FontFamily="Calibri" FontSize="14" SelectionChanged="lstViewAssess_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="40"/>
                     <GridViewColumn Header="Unit/Cluster" DisplayMemberBinding="{Binding UnitCluster}" Width="150"/>
                     <GridViewColumn Header="Assessment" DisplayMemberBinding="{Binding AssessmentName}" Width="120"/>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding AssessmentType}" Width="170"/>
